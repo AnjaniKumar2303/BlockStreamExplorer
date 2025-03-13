@@ -8,7 +8,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-
 import java.util.List;
 
 public class TestBlockStream {
@@ -40,12 +39,16 @@ public class TestBlockStream {
         js.executeScript("arguments[0].scrollIntoView(true)", transactionElement);
         List<WebElement> elementList = driver.findElements(By.id("transaction-box"));
         for(WebElement element : elementList) {
-            WebElement InsAndOut = element.findElement(By.className("ins-and-outs"));
-            
+            WebElement insAndOut = element.findElement(By.className("ins-and-outs"));
+            WebElement inElement = insAndOut.findElement(By.className("vin"));
+            List<WebElement> inElementList = inElement.findElements(By.className("vins"));
+            WebElement outElement = insAndOut.findElement(By.className("vout"));
+            List<WebElement> outElementList = outElement.findElements(By.className("vouts"));
+            if(inElementList.size()==1 && outElementList.size()==2) {
+                WebElement transactionHash = element.findElement(By.xpath("//div[@class='txn font-p2']"));
+                System.out.println(transactionHash.getText());
+            }
         }
-
-
-
     }
 
     @BeforeTest
