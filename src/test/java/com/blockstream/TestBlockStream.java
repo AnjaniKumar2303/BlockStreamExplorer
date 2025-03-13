@@ -1,4 +1,4 @@
-package com.pageobject;
+package com.blockstream;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
